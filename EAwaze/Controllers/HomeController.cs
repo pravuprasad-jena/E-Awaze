@@ -36,7 +36,7 @@ namespace EAwaze.Controllers
         public async Task<IActionResult> GetElecricChargingPoints()
         {
             var locations = await _chargingStationRepository.GetAllChargeDevicesAsync(Lat, Long, 10);
-            return View();
+            return Json(locations);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
