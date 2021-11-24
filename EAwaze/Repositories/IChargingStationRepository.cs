@@ -6,6 +6,6 @@ namespace EAwaze.Repositories
 {
 	public interface IChargingStationRepository
 	{
-		Task<List<ChargeDevice>> GetAllChargeDevicesAsync(string postCode, int limit, string format = "json");
+		Task<List<ChargeDevice>> GetAllChargeDevicesAsync(string latitude, string longitude, int limit, string format = "json");
 	}
 }

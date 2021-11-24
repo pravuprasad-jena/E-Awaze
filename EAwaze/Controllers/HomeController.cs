@@ -13,7 +13,7 @@ namespace EAwaze.Controllers
     public class HomeController : Controller
     {
         private const string Lat = "50.390392";
-        private const string Long = "50.390392";
+        private const string Long = "-3.665670";
         private readonly ILogger<HomeController> _logger;
         private readonly IChargingStationRepository _chargingStationRepository;
 
@@ -35,7 +35,7 @@ namespace EAwaze.Controllers
 
         public async Task<IActionResult> GetElecricChargingPoints()
         {
-            var locations = await _chargingStationRepository.GetAllChargeDevicesAsync("M50+2BB", 10);
+            var locations = await _chargingStationRepository.GetAllChargeDevicesAsync(Lat, Long, 10);
             return View();
         }
 
