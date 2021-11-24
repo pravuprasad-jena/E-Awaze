@@ -10,16 +10,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["E-Awaze/E-Awaze.csproj", "E-Awaze/"]
-RUN dotnet restore "E-Awaze/E-Awaze.csproj"
+COPY ["EAwaze/EAwaze.csproj", "EAwaze/"]
+RUN dotnet restore "EAwaze/EAwaze.csproj"
 COPY . .
-WORKDIR "/src/E-Awaze"
-RUN dotnet build "E-Awaze.csproj" -c Release -o /app/build
+WORKDIR "/src/EAwaze"
+RUN dotnet build "EAwaze.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "E-Awaze.csproj" -c Release -o /app/publish
+RUN dotnet publish "EAwaze.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "E-Awaze.dll"]
+ENTRYPOINT ["dotnet", "EAwaze.dll"]

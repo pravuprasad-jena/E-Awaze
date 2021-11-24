@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>E_Awaze</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
-    <UserSecretsId>9939cf59-b896-478d-bc97-20c3a8951b2b</UserSecretsId>
+    <UserSecretsId>e0e31d75-03cc-4c2d-a501-85702352be9a</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
 

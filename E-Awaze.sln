@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Awaze", "E-Awaze\E-Awaze.csproj", "{4C4C8196-C752-4DD0-A919-8EE6B91FB5BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAwaze", "EAwaze\EAwaze.csproj", "{A23E3BE4-1F08-494D-B794-6F8E280336C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C4C8196-C752-4DD0-A919-8EE6B91FB5BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C4C8196-C752-4DD0-A919-8EE6B91FB5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C4C8196-C752-4DD0-A919-8EE6B91FB5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C4C8196-C752-4DD0-A919-8EE6B91FB5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A23E3BE4-1F08-494D-B794-6F8E280336C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A23E3BE4-1F08-494D-B794-6F8E280336C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A23E3BE4-1F08-494D-B794-6F8E280336C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A23E3BE4-1F08-494D-B794-6F8E280336C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
