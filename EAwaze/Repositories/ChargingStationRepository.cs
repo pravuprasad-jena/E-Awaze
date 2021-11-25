@@ -32,7 +32,15 @@ namespace EAwaze.Repositories
 						{
 							Name = x.ChargeDeviceName,
 							OperatorName = x.DeviceOwner != null ? x.DeviceOwner.OrganisationName : string.Empty,
-							Address = x.ChargeDeviceLocation?.Address != null ?  x.ChargeDeviceLocation.Address : null,
+							//Address = x.ChargeDeviceLocation?.Address != null ?  x.ChargeDeviceLocation.Address : null,
+							Address = x.ChargeDeviceLocation?.Address != null ? new Address
+							{
+								Thoroughfare = x.ChargeDeviceLocation.Address.Thoroughfare ?? x.ChargeDeviceLocation.Address.Street,
+								BuildingName = x.ChargeDeviceLocation.Address.BuildingName ?? string.Empty,
+								County = x.ChargeDeviceLocation.Address.County,
+								Country = "United Kingdom",
+								PostCode = x.ChargeDeviceLocation.Address.PostCode
+							} : null,
 							Latitude = x.ChargeDeviceLocation != null ?  x.ChargeDeviceLocation.Latitude : string.Empty,
 							Longitude = x.ChargeDeviceLocation != null ?  x.ChargeDeviceLocation.Longitude : string.Empty,
 							Status = x.ChargeDeviceStatus,
