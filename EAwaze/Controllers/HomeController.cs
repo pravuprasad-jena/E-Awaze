@@ -2,18 +2,16 @@
 using EAwaze.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EAwaze.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
         private const string Lat = "50.390392";
         private const string Long = "-3.665670";
+        private const int Limit = 20;
         private readonly ILogger<HomeController> _logger;
         private readonly IChargingStationRepository _chargingStationRepository;
 
@@ -35,7 +33,7 @@ namespace EAwaze.Controllers
 
         public async Task<IActionResult> GetElecricChargingPoints()
         {
-            var locations = await _chargingStationRepository.GetAllChargeDevicesAsync(Lat, Long, 2);
+            var locations = await _chargingStationRepository.GetAllChargeDevicesAsync(Lat, Long, Limit);
             return Json(locations);
         }
 

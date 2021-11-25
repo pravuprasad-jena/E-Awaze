@@ -32,7 +32,6 @@ namespace EAwaze.Repositories
 						{
 							Name = x.ChargeDeviceName,
 							OperatorName = x.DeviceOwner != null ? x.DeviceOwner.OrganisationName : string.Empty,
-							//Address = x.ChargeDeviceLocation?.Address != null ?  x.ChargeDeviceLocation.Address : null,
 							Address = x.ChargeDeviceLocation?.Address != null ? new Address
 							{
 								Thoroughfare = x.ChargeDeviceLocation.Address.Thoroughfare ?? x.ChargeDeviceLocation.Address.Street,
@@ -46,7 +45,7 @@ namespace EAwaze.Repositories
 							Status = x.ChargeDeviceStatus,
 							PaymentInformation = x.PaymentDetails ?? string.Empty,
 							Connectors = x.Connector
-						}).ToList();
+						}).GroupBy(x=>x.Name).Select(x=>x.First()).ToList();
 					}
 				}
 				

@@ -19,7 +19,7 @@ namespace EAwaze.Models
 		public List<Connector> Connector { get; set; }
 		public DeviceOwner DeviceOwner { get; set; }
 		public DeviceController DeviceController { get; set; }
-		public List<object> DeviceAccess { get; set; }
+		//public List<object>? DeviceAccess { get; set; } = null;
 		public string DeviceNetworks { get; set; }
 		public string ChargeDeviceStatus { get; set; }
 		public string PublishStatus { get; set; }
