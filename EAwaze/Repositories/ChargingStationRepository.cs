@@ -34,8 +34,7 @@ namespace EAwaze.Repositories
 							OperatorName = x.DeviceOwner != null ? x.DeviceOwner.OrganisationName : string.Empty,
 							Address = x.ChargeDeviceLocation?.Address != null ? new Address
 							{
-								Thoroughfare = x.ChargeDeviceLocation.Address.Thoroughfare ?? x.ChargeDeviceLocation.Address.Street,
-								BuildingName = x.ChargeDeviceLocation.Address.BuildingName ?? string.Empty,
+								Thoroughfare = string.IsNullOrWhiteSpace(x.ChargeDeviceLocation.Address.Thoroughfare) ?  x.ChargeDeviceLocation.Address.Street ?? "First Street" : x.ChargeDeviceLocation.Address.Thoroughfare,								
 								County = x.ChargeDeviceLocation.Address.County,
 								Country = "United Kingdom",
 								PostCode = x.ChargeDeviceLocation.Address.PostCode

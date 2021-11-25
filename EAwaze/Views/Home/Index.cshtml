@@ -116,20 +116,22 @@
 	function getStationDetails(id) {
 		var stationContent = stations[id];
 		var connector = '';
-		var text =stationContent.address.buildingName + '<br />' + stationContent.address.thoroughfare +',<br /> '
+		var text = stationContent.address.thoroughfare +',<br /> '
 		+ stationContent.address.county +',<br /> '+ stationContent.address.postCode + ', '+ '<br />'+ "United Kingdom <br />"
-		+'<a target="_blank" href="https://www.google.com/maps/dir/'+ stationContent.latitude+ ',%20' + stationContent.longitude +'/" id="direction" class="btn btn-info" style="margin-top: 10px;width: 228px;">Get Directions</a><br />'
+		+'<a target="_blank" href="https://www.google.com/maps/dir/'+ stationContent.latitude+ ',%20' + stationContent.longitude +'/" id="direction" class="btn btn-info" style="margin-top: 10px;width: 228px;margin-bottom: 10px;">Get Directions</a><br />'
 		+  'Network / Operator: ' + stationContent.operatorName + '<br />' + 'Number Of Stations/Bays: ' + stationContent.connectors.length + '<br />'
 		+ '<a target="_blank" href="https://'+stationContent.paymentInformation.replace('visit ', '') + '" class="btn btn-info" style="margin-top: 10px;width: 228px;">Usage Cost</a><br />';
+
+		$('#contentsDetails').show();
+		$('#contentsDetails').html('');
+		$('<h5 class="text-left" style="margin-left: 22px;">'+ stationContent.name + '</h5><ul style ="float:left;margin-left: -18px;">'+text+'</ul>').appendTo('#contentsDetails');
 
 		for(let i = 0; i < stationContent.connectors.length; i++){
 			var connector = '<li>' + stationContent.connectors[i].connectorType + '(' + parseInt(stationContent.connectors[i].ratedOutputkW) +' KW)'
 			+  '<br />Status : ' + stationContent.connectors[i].chargePointStatus 
 			+  '<br />ChargeMethod : ' + stationContent.connectors[i].chargeMethod + '</li>';
-			text = text.concat(connector);
+			connector = connector.concat(connector);
 		}
-		$('#contentsDetails').show();
-		$('#contentsDetails').html('');
-		$('<h5 class="text-left">'+ stationContent.name + '</h5><ul class="collumns">'+text+'</ul>').appendTo('#contentsDetails');
+		$('<ul style ="float:right;margin-right: 417px;">' +connector+'</ul>').appendTo('#contentsDetails');
 	}
 </script>
