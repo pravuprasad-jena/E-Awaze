@@ -46,8 +46,10 @@
 		  <ul ></ul>
 		  <ul  id="placeLists" class="collapse collumns"></ul>
 	  </div>
-	  <div id="contentsDetails" class="collapse"> </div>
-	  <br />
+	   <ul ></ul>
+	   <div class="collapse" id="contentsDetails">
+	  </div>
+	   <ul ></ul>
 	  <div class="clearfix"></div>
 </div>
 
@@ -89,6 +91,7 @@
 		 var stations = [];
 		 $(function () {
 			 $("#chargePoints").click(function () {
+				 $('#contentsDetails').hide();
 				 $.ajax({
 					 type: "GET",
 					 url: "/Home/GetElecricChargingPoints",
@@ -112,22 +115,21 @@
 
 	function getStationDetails(id) {
 		var stationContent = stations[id];
-		var text = '<h5 class="text-left">'+ stationContent.name + '</h5><br/>' + '<br />'
-		+ '<img src="https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db">&nbsp' +
-		stationContent.address.buildingName + '<br />' + stationContent.address.thoroughfare +', '
-		+ stationContent.address.county +', '+ stationContent.address.postCode + ', '+ '<br />'+ "United Kingdom <br />"
-		+'<a target="_blank" href="https://www.google.com/maps/dir/'+ stationContent.latitude+ ',%20' + stationContent.longitude +'/" id="direction" class="btn btn-info" >Get Directions</a><br />'
+		var connector = '';
+		var text =stationContent.address.buildingName + '<br />' + stationContent.address.thoroughfare +',<br /> '
+		+ stationContent.address.county +',<br /> '+ stationContent.address.postCode + ', '+ '<br />'+ "United Kingdom <br />"
+		+'<a target="_blank" href="https://www.google.com/maps/dir/'+ stationContent.latitude+ ',%20' + stationContent.longitude +'/" id="direction" class="btn btn-info" style="margin-top: 10px;width: 228px;">Get Directions</a><br />'
 		+  'Network / Operator: ' + stationContent.operatorName + '<br />' + 'Number Of Stations/Bays: ' + stationContent.connectors.length + '<br />'
-		+ '<a target="_blank" href="https://'+stationContent.paymentInformation.replace('visit ', '') + '" class="btn btn-info" >Usage Cost</a><br />';
+		+ '<a target="_blank" href="https://'+stationContent.paymentInformation.replace('visit ', '') + '" class="btn btn-info" style="margin-top: 10px;width: 228px;">Usage Cost</a><br />';
 
 		for(let i = 0; i < stationContent.connectors.length; i++){
-			var connector = '<br/>' + stationContent.connectors[i].connectorType + '(' + parseInt(stationContent.connectors[i].ratedOutputkW) +' KW)<br/>'
-			+  'Status : ' + stationContent.connectors[i].chargePointStatus + '<br/>'
-			+  'ChargeMethod : ' + stationContent.connectors[i].chargeMethod + '<br/> <br/>';
+			var connector = '<li>' + stationContent.connectors[i].connectorType + '(' + parseInt(stationContent.connectors[i].ratedOutputkW) +' KW)'
+			+  '<br />Status : ' + stationContent.connectors[i].chargePointStatus 
+			+  '<br />ChargeMethod : ' + stationContent.connectors[i].chargeMethod + '</li>';
 			text = text.concat(connector);
 		}
-
+		$('#contentsDetails').show();
 		$('#contentsDetails').html('');
-		$('<span href="#" class="text-left" >'+text+'</span>').appendTo('#contentsDetails');
+		$('<h5 class="text-left">'+ stationContent.name + '</h5><ul class="collumns">'+text+'</ul>').appendTo('#contentsDetails');
 	}
 </script>
