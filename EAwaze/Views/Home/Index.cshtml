@@ -35,14 +35,20 @@
 	<div class="clearfix"></div>
 	<br />
 
-	<button type="button" id="chargePoints" class="btn btn-info" data-toggle="collapse" data-target="#contents">ELECTRIC CHARGING POINTS NEARBY:</button>
-	  <br />
-	  <div id="contents" class="collapse"> </div>
+	  <div id="mainContents" > 
+		  <div id="contents">
+			  <div class="mapWrapper">
+				  <div id="map" class="map" />
+			  </div>
+		  </div>
+		  <ul ></ul>
+		  <button type="button" id="chargePoints" class="btn btn-info" data-toggle="collapse" data-target="#placeLists">ELECTRIC CHARGING POINTS NEARBY:</button>
+		  <ul ></ul>
+		  <ul  id="placeLists" class="collapse collumns"></ul>
+	  </div>
 	  <div id="contentsDetails" class="collapse"> </div>
 	  <br />
 	  <div class="clearfix"></div>
-		<div id="map" class="map" />
-		<div class="clearfix"></div>
 </div>
 
 
@@ -88,9 +94,9 @@
 					 url: "/Home/GetElecricChargingPoints",
 					 success: function (response) {
 						 stations = response;
-						 $('#contents').html('');
+						 $('#placeLists').html('');
 						 for (let i = 0; i < response.length; i++) {
-							  $('<br/><img src="https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db">&nbsp<a href="#" class="text-left" onclick="getStationDetails('+i+')" data-toggle="collapse" data-target="#contentsDetails">'+response[i].name+'</a>').appendTo('#contents');
+							  $('<li><a href="#" class="text-left" onclick="getStationDetails('+i+')" data-toggle="collapse" data-target="#contentsDetails">'+response[i].name+'</a></li>').appendTo('#placeLists');
 							 addMarkerToMap(response[i].latitude, response[i].longitude, "https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db");
 						 }
 					 },
