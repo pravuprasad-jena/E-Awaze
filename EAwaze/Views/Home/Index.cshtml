@@ -33,16 +33,17 @@
 		<h5 class="display-5">Bow Creek, between Dartmouth and Totnes, Devon | FCK</h5>
 	</div>
 	<div class="clearfix"></div>
+	<br />
 
-	<div>
-		<div>
-			<a class="navbar-brand" id="chargePoints" href="#">ELECTRIC CHARGING POINTS NEARBY:</a>
-		</div>
-
-		<div id="contents"></div>
+	<button type="button" id="chargePoints" class="btn btn-info" data-toggle="collapse" data-target="#contents">ELECTRIC CHARGING POINTS NEARBY:</button>
+	  <br />
+	  <div id="contents" class="collapse"> </div>
+	  <br />
+	  <div class="clearfix"></div>
 		<div id="map" class="map" />
-	</div>
+		<div class="clearfix"></div>
 </div>
+
 
 <script type="text/javascript">
 		 function initMap() {
@@ -88,7 +89,7 @@
 						 stations = response;
 						 $('#contents').html('');
 						 for (let i = 0; i < response.length; i++) {
-							  $('<a href="#" onclick="getStationDetails('+i+')">'+response[i].name+'</a><br/>').appendTo('#contents');
+							  $('<br/><img src="https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db">&nbsp<a href="#" class="text-left" onclick="getStationDetails('+i+')">'+response[i].name+'</a>').appendTo('#contents');
 							 addMarkerToMap(response[i].latitude, response[i].longitude, "https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db");
 						 }
 					 },

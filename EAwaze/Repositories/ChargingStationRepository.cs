@@ -19,7 +19,7 @@ namespace EAwaze.Repositories
 				httpClient.BaseAddress =
 					new Uri(
 						$"https://chargepoints.dft.gov.uk/api/retrieve/registry/format/{format}/");
-				var response = await httpClient.GetAsync($"lat/{latitude}/long/{longitude}/dist/20/limit/10");
+				var response = await httpClient.GetAsync($"lat/{latitude}/long/{longitude}/dist/20/limit/{limit}");
 
 				if (response.IsSuccessStatusCode)
 				{
