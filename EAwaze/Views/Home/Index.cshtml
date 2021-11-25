@@ -55,13 +55,14 @@
 
 
 <script type="text/javascript">
+	var markers = [];
 		 function initMap() {
 		 const location = { lat: 50.390392, lng: -3.665670 };
 		   map = new google.maps.Map(document.getElementById("map"), {
 				 center: location,
 				 minZoom: 4,
 				 maxZoom: 20,
-				 zoom: 10,
+				 zoom: 9.5,
 				 panControl: false,
 				 draggable: true,
 				 navigationControl: false,
@@ -81,12 +82,22 @@
 				 map: map,
 				 icon: icon
 			 });
+
+			 markers.push(marker);
 		 }
 
 		 function addMarkerToMap(lat, long, icon) {
 				centralPark = new google.maps.LatLng(lat, long);
 				addMarker(centralPark, icon);
 		 }
+
+		 function DeleteMarkers() {
+        //Loop through all the markers and remove
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+    };
 
 		 var stations = [];
 		 $(function () {
@@ -98,6 +109,7 @@
 					 success: function (response) {
 						 stations = response;
 						 $('#placeLists').html('');
+						 $('#placeLists').addClass('show');
 						 for (let i = 0; i < response.length; i++) {
 							  $('<li><a href="#" class="text-left" onclick="getStationDetails('+i+')" data-toggle="collapse" data-target="#contentsDetails">'+response[i].name+'</a></li>').appendTo('#placeLists');
 							 addMarkerToMap(response[i].latitude, response[i].longitude, "https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db");
@@ -114,6 +126,7 @@
 		 });
 
 	function getStationDetails(id) {
+		DeleteMarkers() ;
 		var stationContent = stations[id];
 		var connector = '';
 		var text = stationContent.address.thoroughfare +',<br /> '
@@ -133,5 +146,7 @@
 			connector = connector.concat(connector);
 		}
 		$('<ul style ="float:right;margin-right: 417px;">' +connector+'</ul>').appendTo('#contentsDetails');
+		 addMarkerToMap(stationContent.latitude, stationContent.longitude, "https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db");
+		 addMarkerToMap(50.390392,  -3.665670, "https://www.bluechipholidays.co.uk/assets/pin-property-single.png?v=745ed4ed66696b93478cc2135a0f0ea1");
 	}
 </script>
