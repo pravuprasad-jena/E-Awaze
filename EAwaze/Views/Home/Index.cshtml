@@ -38,6 +38,7 @@
 	<button type="button" id="chargePoints" class="btn btn-info" data-toggle="collapse" data-target="#contents">ELECTRIC CHARGING POINTS NEARBY:</button>
 	  <br />
 	  <div id="contents" class="collapse"> </div>
+	  <div id="contentsDetails" class="collapse"> </div>
 	  <br />
 	  <div class="clearfix"></div>
 		<div id="map" class="map" />
@@ -89,7 +90,7 @@
 						 stations = response;
 						 $('#contents').html('');
 						 for (let i = 0; i < response.length; i++) {
-							  $('<br/><img src="https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db">&nbsp<a href="#" class="text-left" onclick="getStationDetails('+i+')">'+response[i].name+'</a>').appendTo('#contents');
+							  $('<br/><img src="https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db">&nbsp<a href="#" class="text-left" onclick="getStationDetails('+i+')" data-toggle="collapse" data-target="#contentsDetails">'+response[i].name+'</a>').appendTo('#contents');
 							 addMarkerToMap(response[i].latitude, response[i].longitude, "https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db");
 						 }
 					 },
@@ -105,7 +106,22 @@
 
 	function getStationDetails(id) {
 		var stationContent = stations[id];
-		var text = stationContent.name + '<br/> ' + stationContent.operatorName
-		alert(text)
+		var text = '<h5 class="text-left">'+ stationContent.name + '</h5><br/>' + '<br />'
+		+ '<img src="https://www.bluechipholidays.co.uk/assets/pin-food-med.png?v=aab8bac20d59f77a9e2252f0aba439db">&nbsp' +
+		stationContent.address.buildingName + '<br />' + stationContent.address.thoroughfare
+		+ stationContent.address.county+ stationContent.address.postCode +'<br />'+ "United Kingdom"
+		+'<a target="_blank" href="https://www.google.com/maps/dir/'+ stationContent.latitude+ ',%20' + stationContent.longitude +'/" id="direction" class="btn btn-info" >Get Directions</a><br />'
+		+  'Network / Operator: ' + stationContent.operatorName + '<br />' + 'Number Of Stations/Bays: ' + stationContent.connectors.length + '<br />'
+		+ '<a target="_blank" href="https://'+stationContent.paymentInformation.replace('visit ', '') + '" class="btn btn-info" >Usage Cost</a><br />';
+
+		for(let i = 0; i < stationContent.connectors.length; i++){
+			var connector = '<br/>' + stationContent.connectors[i].connectorType + '(' + parseInt(stationContent.connectors[i].ratedOutputkW) +' KW)<br/>'
+			+  'Status : ' + stationContent.connectors[i].chargePointStatus + '<br/>'
+			+  'ChargeMethod : ' + stationContent.connectors[i].chargeMethod + '<br/> <br/>';
+			text = text.concat(connector);
+		}
+
+		$('#contentsDetails').html('');
+		$('<span href="#" class="text-left" >'+text+'</span>').appendTo('#contentsDetails');
 	}
 </script>

@@ -36,7 +36,7 @@ namespace EAwaze.Repositories
 							Latitude = x.ChargeDeviceLocation != null ?  x.ChargeDeviceLocation.Latitude : string.Empty,
 							Longitude = x.ChargeDeviceLocation != null ?  x.ChargeDeviceLocation.Longitude : string.Empty,
 							Status = x.ChargeDeviceStatus,
-							PaymentInformation = x.PaymentDetails,
+							PaymentInformation = x.PaymentDetails ?? string.Empty,
 							Connectors = x.Connector
 						}).ToList();
 					}
