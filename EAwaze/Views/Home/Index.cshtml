@@ -133,7 +133,7 @@
 		+ stationContent.address.county +',<br /> '+ stationContent.address.postCode + ', '+ '<br />'+ "United Kingdom <br />"
 		+'<a target="_blank" href="https://www.google.com/maps/dir/'+ stationContent.latitude+ ',%20' + stationContent.longitude +'/" id="direction" class="btn btn-info" style="margin-top: 10px;width: 228px;margin-bottom: 10px;">Get Directions</a><br />'
 		+  'Network / Operator: ' + stationContent.operatorName + '<br />' + 'Number Of Stations/Bays: ' + stationContent.connectors.length + '<br />'
-		+ '<a target="_blank" href="https://'+stationContent.paymentInformation.replace('visit ', '') + '" class="btn btn-info" style="margin-top: 10px;width: 228px;">Usage Cost</a><br />';
+		+ '<a target="_blank" href="'+stationContent.paymentInformation.replace('visit ', '') + '" class="btn btn-info" style="margin-top: 10px;width: 228px;">Usage Cost</a><br />';
 
 		$('#contentsDetails').show();
 		$('#contentsDetails').html('');

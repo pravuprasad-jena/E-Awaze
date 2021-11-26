@@ -42,7 +42,7 @@ namespace EAwaze.Repositories
 							Latitude = x.ChargeDeviceLocation != null ?  x.ChargeDeviceLocation.Latitude : string.Empty,
 							Longitude = x.ChargeDeviceLocation != null ?  x.ChargeDeviceLocation.Longitude : string.Empty,
 							Status = x.ChargeDeviceStatus,
-							PaymentInformation = x.PaymentDetails ?? string.Empty,
+							PaymentInformation = GetChargingCost(x.DeviceOwner != null ? x.DeviceOwner.OrganisationName : string.Empty),
 							Connectors = x.Connector
 						}).GroupBy(x=>x.Name).Select(x=>x.First()).ToList();
 					}
@@ -56,6 +56,25 @@ namespace EAwaze.Repositories
 				throw;
 			}
 		}
+
+		private string GetChargingCost(string operatorName)
+        {
+			var cost = string.Empty;
+            switch (operatorName)
+            {
+				case "EV Solutions":
+					cost = "https://www.geniepoint.co.uk/ds";
+					break;
+				case "Osprey":
+					cost = "https://ospreycharging.co.uk/";
+					break;
+				default:
+					cost = "https://ospreycharging.co.uk/";
+					break;
+			}
+
+			return cost;
+        }
 	}
 
 	public class ChargingStation
